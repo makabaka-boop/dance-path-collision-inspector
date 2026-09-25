@@ -1,0 +1,18 @@
+services:
+  stage:
+    build:
+      context: .
+      target: stage
+    image: stage-trajectory-check:latest
+    container_name: stage-trajectory
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+  tests:
+    build:
+      context: .
+      target: test
+    image: stage-trajectory-tests:latest
+    profiles:
+      - test
